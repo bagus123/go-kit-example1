@@ -1,8 +1,8 @@
-#go-kit-example1
+# go-kit-example1
 
 Let’s create a minimal Go kit service. For now, we will use a single main.go file for that.
 
-###Your business logic
+### Your business logic
 Your service starts with your business logic. In Go kit, we model a service as an interface.
 ```go
 // StringService provides operations on strings.
@@ -39,7 +39,7 @@ var ErrEmpty = errors.New("Empty string")
 
 ```
 
-###Requests and responses
+### Requests and responses
 In Go kit, the primary messaging pattern is RPC. So, every method in our interface will be modeled as a remote procedure call. For each method, we define request and response structs, capturing all of the input and output parameters respectively.
 ```go
 type uppercaseRequest struct {
@@ -60,7 +60,7 @@ type countResponse struct {
 }
 ```
 
-###Endpoints
+### Endpoints
 Go kit provides much of its functionality through an abstraction called an endpoint.
 
 An endpoint is defined as follows (you don’t have to put it anywhere in the code, it is provided by go-kit):
@@ -94,7 +94,7 @@ func makeCountEndpoint(svc StringService) endpoint.Endpoint {
 }
 ```
 
-###Transports
+### Transports
 Now we need to expose your service to the outside world, so it can be called. Your organization probably already has opinions about how services should talk to each other. Maybe you use Thrift, or custom JSON over HTTP. Go kit supports many transports out of the box.
 
 For this minimal example service, let’s use JSON over HTTP. Go kit provides a helper struct, in package transport/http.
